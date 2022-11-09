@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for the management of a CRM",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node .",
+    "lint": "eslint ./*.js",
+    "watch": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://braintechpt@bitbucket.org/braintechpt/backend.git"
+  },
+  "author": "Renato Dantas - Braintech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/braintechpt/backend/issues"
+  },
+  "homepage": "https://bitbucket.org/braintechpt/backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.1",
+    "winston": "^3.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "nodemon": "^2.0.15"
+  }
+}
