@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://rdantas-api.herokuapp.com/",
+  baseURL: "localhost:5000",
   headers: {
     "Content-type": "application/json",
   },

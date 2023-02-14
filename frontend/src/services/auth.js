@@ -4,12 +4,12 @@ const authLogin = (data) => {
   return axios.post("auth/login", data);
 };
 
-const authLoggedIn = () => {
-  return axios.get("auth/loggedIn");
-};
-
 const authLogOut = () => {
   return axios.get("auth/logout");
+};
+
+const authLoggedIn = () => {
+  return axios.get("auth/isAuthenticated");
 };
 
 export { authLogin, authLoggedIn, authLogOut };
