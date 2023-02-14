@@ -1,6 +1,6 @@
 # trabalhoPW_6160 - Frontend
 
-Frontend do isatema desenvolvido em React.
+Frontend do sistema desenvolvido em React.
 
 ## Funcionalidades
 
