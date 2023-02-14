@@ -1,8 +1,8 @@
 import express from 'express';
-import * as postCatController from '../controllers/postCat.js';
-import checkAuth from '../middleware/checkAuth.js';
 import checkID from '../middleware/checkID.js';
+import checkAuth from '../middleware/checkAuth.js';
 import checkQuerys from '../middleware/checkQuerys.js';
+import * as postCatController from '../controllers/postCat.js';
 
 const router = express.Router();
 
@@ -13,14 +13,14 @@ router.put(
   '/:id',
   checkAuth,
   checkID('post_categories'),
-  postCatController.updatePostCat
+  postCatController.updatePostCat,
 );
 router.delete(
   '/:id',
   checkAuth,
   checkID('post_categories'),
   checkQuerys,
-  postCatController.deletePostCat
+  postCatController.deletePostCat,
 );
 
 export default router;

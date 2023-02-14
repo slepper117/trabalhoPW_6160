@@ -1,9 +1,9 @@
 import express from 'express';
-import * as postController from '../controllers/post.js';
-import checkAuth from '../middleware/checkAuth.js';
 import checkID from '../middleware/checkID.js';
+import checkAuth from '../middleware/checkAuth.js';
 import checkBody from '../middleware/checkBody.js';
 import checkQuerys from '../middleware/checkQuerys.js';
+import * as postController from '../controllers/post.js';
 
 const router = express.Router();
 
@@ -15,14 +15,14 @@ router.put(
   checkAuth,
   checkID('posts'),
   checkBody,
-  postController.updatePost
+  postController.updatePost,
 );
 router.delete(
   '/:id',
   checkAuth,
   checkID('posts'),
   checkQuerys,
-  postController.deletePost
+  postController.deletePost,
 );
 
 export default router;

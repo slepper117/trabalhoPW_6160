@@ -5,10 +5,10 @@ import {
   isSomeArray,
   toArray,
   toArrayNum,
-  idExist
+  idExist,
 } from '../functions/validation.js';
 
-async function checkParams(req, _res, next) {
+async function checkParams(req, res, next) {
   const {
     page,
     limit,
@@ -18,7 +18,7 @@ async function checkParams(req, _res, next) {
     status,
     featured,
     categories,
-    force
+    force,
   } = req.query;
 
   const queryParams = {};
@@ -27,47 +27,61 @@ async function checkParams(req, _res, next) {
   const arrayStatus = ['publish', 'future', 'draft'];
 
   try {
-    // Valida o Nº de Páginas
+    /**
+     * Check if Page number is number
+     */
     if (page) {
       queryParams.page = toInt('page', page);
     } else {
       queryParams.page = 1;
     }
 
-    // Valida o limite de objetos
+    /**
+     * Check if Limit (object number) is number
+     */
     if (limit) {
       queryParams.limit = toInt('limit', limit);
     } else {
       queryParams.limit = 10;
     }
 
-    // Valida a ordenação
+    /**
+     * Check if Order is valid
+     */
     if (order) {
       isInArray('order', order, arrayOrder);
       queryParams.order = order;
     }
 
-    // Valida o atributo pelo qual é ordenado
+    /**
+     * Check if Orderby is valid
+     */
     if (orderby) {
       isInArray('order', orderby, arrayOrderby);
       queryParams.orderby = orderby;
     }
 
-    // Valida o Autores
+    /**
+     * Check if Authores are valid and exists
+     */
     if (authors) {
       const array = toArrayNum('authors', authors);
       idExist('authores', array, 'users');
       queryParams.authors = array;
     }
 
-    // Valida as Categorias
+    /**
+     * Check if Categories are valid and exists
+     */
     if (categories) {
       const array = toArrayNum('categories', categories);
       idExist('categories', array, 'post_categories');
       queryParams.categories = array;
     }
 
-    // Valida o Estado
+    /**
+     * Check if Status is valid
+     */
     if (status) {
       const array = toArray('status', status);
       isSomeArray('status', array, arrayStatus);

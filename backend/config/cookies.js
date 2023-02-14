@@ -1,3 +1,4 @@
+// Cookies Configuration
 const cookiesConfig = {
   login: {
     httpOnly: true,
@@ -8,7 +9,7 @@ const cookiesConfig = {
     secure:
       process.env.NODE_ENV === 'development'
         ? false
-        : process.env.NODE_ENV === 'production' && true
+        : process.env.NODE_ENV === 'production' && true,
   },
   logout: {
     httpOnly: true,
@@ -20,8 +21,8 @@ const cookiesConfig = {
       process.env.NODE_ENV === 'development'
         ? false
         : process.env.NODE_ENV === 'production' && true,
-    expires: new Date(0)
-  }
+    expires: new Date(0),
+  },
 };
 
 export default cookiesConfig;

@@ -1,3 +1,4 @@
+// Logger Configuration
 import { createLogger, transports, addColors, format } from 'winston';
 
 const { combine, timestamp, colorize, printf, json, errors, prettyPrint } =
@@ -11,7 +12,7 @@ const logLevels = {
     info: 2,
     sql: 3,
     http: 4,
-    debug: 5
+    debug: 5,
   },
   colors: {
     error: 'red',
@@ -19,8 +20,8 @@ const logLevels = {
     info: 'green',
     sql: 'purple',
     http: 'magenta',
-    debug: 'white'
-  }
+    debug: 'white',
+  },
 };
 
 // Adiciona as cores ao Logger
@@ -33,13 +34,13 @@ const logFormat = combine(timestamp(), json());
 const allFormat = combine(
   timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
   errors({ stack: true }),
-  prettyPrint()
+  prettyPrint(),
 );
 
 // Formatador de Consola
 const consoleFormat = combine(
   colorize({ all: true }),
-  printf((info) => `${info.level}: ${info.message}`)
+  printf((info) => `${info.level}: ${info.message}`),
 );
 
 // Define os Transportadores
@@ -49,8 +50,8 @@ const logTransports = [
   new transports.File({
     filename: 'logs/pretty.log',
     level: 'warn',
-    format: allFormat
-  })
+    format: allFormat,
+  }),
 ];
 
 /**
@@ -61,12 +62,12 @@ const logger = createLogger({
   format: logFormat,
   transports: logTransports,
   exceptionHandlers: [
-    new transports.File({ filename: 'logs/handlers/exceptions.log' })
+    new transports.File({ filename: 'logs/handlers/exceptions.log' }),
   ],
   rejectionHandlers: [
-    new transports.File({ filename: 'logs/Handlers/rejections.log' })
+    new transports.File({ filename: 'logs/Handlers/rejections.log' }),
   ],
-  exitOnError: false
+  exitOnError: false,
 });
 
 // Adiciona o Logger de Consola no Desenvolvimento

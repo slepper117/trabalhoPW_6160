@@ -15,38 +15,53 @@ async function checkBody(req, _res, next) {
 
   try {
     if (category) {
+      // Parse to number
       const parseCat = parseInt(category, 10);
       if (!Number.isNaN(parseCat)) {
+        // Query all categories id's
         const queryCat = await query('SELECT id FROM crm.post_categories');
+        // Map to array
         const map = queryCat.rows.map(({ id }) => id);
+        // Check if all exists
         if (map.includes(parseCat)) {
           body.category = parseCat;
         } else {
           throw new Error404(
             'category-dosent-exist',
-            'Category provided not exist'
+            'Category provided not exist',
           );
         }
       } else {
         throw new Error400(
           'category-not-integer',
-          'The category provided is not a integer'
+          'The category provided is not a integer',
         );
       }
     } else {
       body.category = 1;
     }
 
+    /**
+     * Validates Date
+     */
     if (date) {
       const parsDate = Date.parse(date);
-      if (Number.isNaN(parsDate)) throw new Error400('teste', 'tteste');
+      if (Number.isNaN(parsDate))
+        throw new Error400('date-not-valid', 'Date Provided is not valid');
       parseDate = new Date(date).toISOString();
     }
 
+    /**
+     * Validates Status
+     */
     if (status) {
-      if (!statusArray.includes(status)) throw new Error400('teste', 'tteste');
+      if (!statusArray.includes(status))
+        throw new Error400('status-not-valid', 'Status is not valid');
     }
 
+    /**
+     * Check if Date and Status are valid
+     */
     if (date && status) {
       if (status === 'publish') {
         if (parseDate > Date.now()) {
@@ -81,29 +96,41 @@ async function checkBody(req, _res, next) {
       body.date = dateNow;
     }
 
+    /**
+     * Check if featured is boolean
+     */
     if (featured) {
       if (boolArray.includes(featured)) {
         body.featured = featured;
       } else {
         throw new Error400(
           'featured-not-bool',
-          'The parameter featured is not boolean'
+          'The parameter featured is not boolean',
         );
       }
     } else {
       body.featured = false;
     }
 
+    /**
+     * Check if title is not empty
+     */
     if (title) {
       isEmpty('title', title);
       body.title = title;
     }
 
+    /**
+     * Check if excerpt is not empty
+     */
     if (excerpt) {
       isEmpty('excerpt', excerpt);
       body.excerpt = excerpt;
     }
 
+    /**
+     * Check if content is not empty
+     */
     if (content) {
       isEmpty('content', content);
       body.content = content;

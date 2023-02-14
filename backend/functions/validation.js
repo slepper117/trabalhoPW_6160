@@ -10,6 +10,11 @@ import toArrayNum from './validation/toArrayNum.js';
 import toBoolean from './validation/toBoolean.js';
 import toInt from './validation/toInt.js';
 
+/**
+ * Function that transforms a array in a string
+ * @param {any[]} array Arrau to transform
+ * @returns String
+ */
 function arrayToString(array) {
   const resString = JSON.stringify(array)
     // eslint-disable-next-line no-useless-escape
@@ -18,6 +23,12 @@ function arrayToString(array) {
   return resString;
 }
 
+/**
+ * Function to verify if an ID exists
+ * @param {string} field Field where check is made
+ * @param {string} value Value to be checked
+ * @param {string} relation Relation where ID is
+ */
 async function idExist(field, value, relation) {
   const queryID = await query(`SELECT id FROM crm.${relation}`);
   const aux = queryID.rows.map(({ id }) => id);
@@ -36,5 +47,5 @@ export {
   toArray,
   toArrayNum,
   toBoolean,
-  toInt
+  toInt,
 };

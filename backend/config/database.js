@@ -1,12 +1,9 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
+// Database Configuration
 const dbconfig = {
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 };
 
 export default dbconfig;

@@ -1,9 +1,9 @@
 /**
- * Função para Paginar
- * @param {array} sourceList - Array de Objetos
- * @param {integer} sourceCount - Contagem de Objetos
- * @param {integer} page - Numero da Pagina
- * @param {integer} limit - Limite da Pagina
+ * Paginate Function
+ * @param {array} sourceList - Array of objects
+ * @param {integer} sourceCount - Object's count
+ * @param {integer} page - Page number
+ * @param {integer} limit - Object's limit
  * @returns
  */
 function paginate(sourceList, sourceCount, page, limit) {
@@ -15,7 +15,7 @@ function paginate(sourceList, sourceCount, page, limit) {
     pageData: pageList,
     nextPage: page < lastPage ? page + 1 : null,
     prevPage: page > 1 ? page - 1 : null,
-    lastPage
+    lastPage,
   };
 }
 

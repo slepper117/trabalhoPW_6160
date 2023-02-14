@@ -11,11 +11,12 @@ function isSomeArray(field, value, array) {
     throw new Error400(`${field}-is-empty`, `The ${field} cannot be empty`);
 
   const aux = value.some((i) => array.includes(i));
-  if (!aux)
+  if (!aux) {
     throw new Error400(
       `${field}-dosent-exist`,
-      `The indicated ${field} does not exist`
+      `The indicated ${field} does not exist`,
     );
+  }
 }
 
 export default isSomeArray;

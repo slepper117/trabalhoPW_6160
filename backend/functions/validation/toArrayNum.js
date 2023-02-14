@@ -11,11 +11,12 @@ import { Error400 } from '../../classes/errors.js';
 function toArrayNum(field, value, separator = ',') {
   const aux = toArray(field, value, separator).map(Number);
 
-  if (aux.some(Number.isNaN))
+  if (aux.some(Number.isNaN)) {
     throw new Error400(
       `${field}-dosent-exist`,
-      `The indicated ${field} does not exist`
+      `The indicated ${field} does not exist`,
     );
+  }
 
   return aux;
 }

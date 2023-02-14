@@ -10,10 +10,11 @@ import { Error400 } from '../../classes/errors.js';
 function toInt(field, value, radix = 10) {
   const aux = parseInt(value, radix);
 
-  if (Number.isNaN(aux))
+  if (Number.isNaN(aux)) {
     throw new Error400(
-      `${field}-not-int', 'The ${field} number is not a integer`
+      `${field}-not-int', 'The ${field} number is not a integer`,
     );
+  }
 
   return aux;
 }

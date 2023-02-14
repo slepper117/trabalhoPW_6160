@@ -11,4 +11,5 @@ function isBoolean(field, value) {
   if (!isBool)
     throw new Error400(`${field}-is-not-boolean`, `${field} is not a boolean`);
 }
+
 export default isBoolean;

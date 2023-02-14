@@ -3,8 +3,8 @@ import * as authController from '../controllers/auth.js';
 
 const router = express.Router();
 
-router.post('/login', authController.logIn);
-router.get('/loggedIn', authController.loggedIn);
-router.get('/logout', authController.logOut);
+router.post('/login', authController.login);
+router.post('/logout', authController.logout);
+router.get('/isAuthenticated', authController.isAuthenticated);
 
 export default router;

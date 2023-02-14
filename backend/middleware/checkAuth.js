@@ -1,17 +1,17 @@
 import jwt from 'jsonwebtoken';
 import { Error401 } from '../classes/errors.js';
 
-function checkAuth(req, _res, next) {
-  try {
-    const { token } = req.cookies;
+function checkAuth(req, res, next) {
+  const { token } = req.cookies;
 
-    // Se não existe Token, cancela o pedido
+  try {
+    // If token doesn’t exists
     if (!token) throw new Error401('route-protected', 'Not Authorized');
 
-    // Se existe Token verifica
+    // Verifies Token
     const validateUser = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Devolve o id
+    // Returns ID in request
     req.user = validateUser.id;
     next();
   } catch (err) {
